@@ -10,6 +10,10 @@ import UIKit
 
 class DeckTableViewCell: UITableViewCell {
 
+    //Properties
+    @IBOutlet weak var deckName: UILabel!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
