@@ -14,13 +14,15 @@ class Deck {
     
     var name: String
     var cards: [Card]
+    var random:Int
     
     
     //MARK: initialization
     
-    init?(name:String, cards: [Card]){
+    init?(name:String, cards: [Card], random:Int){
         self.name = name
         self.cards = cards
+        self.random = random
         
         
         

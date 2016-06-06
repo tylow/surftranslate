@@ -27,14 +27,14 @@ class CardTableViewController: UITableViewController {
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        
+  /*
         //search
         
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true
         tableView.tableHeaderView = searchController.searchBar
-        
+*/
     }
     
     //how to be able to search both top and bottom string?
@@ -63,7 +63,8 @@ class CardTableViewController: UITableViewController {
             return filteredCards.count
         }
         return cards.count
-
+    }
+/*
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
@@ -80,7 +81,7 @@ class CardTableViewController: UITableViewController {
         return cell
         */
     }
-    
+*/
 
     /*
     // Override to support conditional editing of the table view.
@@ -133,13 +134,14 @@ class CardTableViewController: UITableViewController {
         */
     }
     */
-
 }
 
-    
-    //does not work yet..
-extension CardTableViewController: UISearchResultsUpdating {
-    func updateSearchResultsForSearchController(searchController: UISearchController) {
-        filterContentForSearchText(searchController.searchBar.text!)
-    }
-}
+/*
+ //does not work yet..
+ extension CardTableViewController: UISearchResultsUpdating {
+ func updateSearchResultsForSearchController(searchController: UISearchController) {
+ filterContentForSearchText(searchController.searchBar.text!)
+ }
+ }
+ */
+
