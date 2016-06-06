@@ -15,11 +15,14 @@ class Card {
     
     var firstPhrase: String
     var secondPhrase: String
-    var audio: 
     
+    //For the Most Used sorting function. Increment every time user uses a card
+    var numTimesUsed: Int
     
     //Init
-    init(){
-        
+    init(firstPhrase:String, secondPhrase:String, nums:Int){
+        self.firstPhrase = firstPhrase
+        self.secondPhrase = secondPhrase
+        self.numTimesUsed = nums
     }
 }

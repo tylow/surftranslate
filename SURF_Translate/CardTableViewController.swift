@@ -9,6 +9,14 @@
 import UIKit
 
 class CardTableViewController: UITableViewController {
+    
+    //MARK: properties
+    
+    var cards = [Card]() //keeps track of all the Card objects
+    
+    //search
+    let searchController = UISearchController(searchResultsController: nil)
+    var filteredCards = [Card]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -16,12 +24,27 @@ class CardTableViewController: UITableViewController {
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
-        // Use the edit button item provided by the table view controller.
-        navigationItem.rightBarButtonItem = editButtonItem()
+        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+        self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        //search
+        
+        searchController.searchResultsUpdater = self
+        searchController.dimsBackgroundDuringPresentation = false
+        definesPresentationContext = true
+        tableView.tableHeaderView = searchController.searchBar
+        
     }
+    
+    //how to be able to search both top and bottom string?
+    func filterContentForSearchText(searchText:String){
+        filteredCards = cards.filter { card in
+            return card.firstPhrase.lowercaseString.containsString(searchText.lowercaseString)
+        }
+        tableView.reloadData()
+    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -32,23 +55,32 @@ class CardTableViewController: UITableViewController {
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
-    }
+        if searchController.active && searchController.searchBar.text != ""{
+            return filteredCards.count
+        }
+        return cards.count
 
-    /*
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-
-        // Configure the cell...
-
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
+        let card: Card
+        if searchController.active && searchController.searchBar.text != "" {
+            card = filteredCards[indexPath.row]
+        } else {
+            card = cards[indexPath.row]
+        }
+        /*
+        //error: topPhrase and bottomPhrase text boxes have NOT been made
+        cell.topPhrase?.text = card.firstPhrase
+        cell.bottomPhrase?.text = card.secondPhrase
         return cell
+        */
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.
@@ -90,9 +122,24 @@ class CardTableViewController: UITableViewController {
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        
+        /*
+        let card: Card
+        if searchController.active && searchController.searchBar.text != ""{
+            card = filteredCards[indexPath.row]
+         } else {
+            card = cards[indexPath.row]
+         }
+        */
     }
     */
 
+}
+
+    
+    //does not work yet..
+extension CardTableViewController: UISearchResultsUpdating {
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+        filterContentForSearchText(searchController.searchBar.text!)
+    }
 }
