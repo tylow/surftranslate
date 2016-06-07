@@ -20,9 +20,9 @@ class Card {
     var numTimesUsed: Int
     
     //Init
-    init(firstPhrase:String, secondPhrase:String, nums:Int){
+    init(firstPhrase:String, secondPhrase:String, numTimesUsed:Int){
         self.firstPhrase = firstPhrase
         self.secondPhrase = secondPhrase
-        self.numTimesUsed = nums
+        self.numTimesUsed = numTimesUsed
     }
 }

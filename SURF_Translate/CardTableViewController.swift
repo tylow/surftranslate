@@ -16,8 +16,10 @@ class CardTableViewController: UITableViewController {
     
     //search
     let searchController = UISearchController(searchResultsController: nil)
+    
     var filteredCards = [Card]()
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -27,20 +29,28 @@ class CardTableViewController: UITableViewController {
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         self.navigationItem.rightBarButtonItem = self.editButtonItem()
-  /*
+  
+        
+        //adding some sample Cards
+        let card1 = Card(firstPhrase: "1", secondPhrase: "2", numTimesUsed: 0)
+        let card2 = Card(firstPhrase: "English", secondPhrase: "Arabic", numTimesUsed: 0)
+        let card3 = Card(firstPhrase: "I need water", secondPhrase: "أحتاج إلى الماء", numTimesUsed:0)
+        cards += [card1, card2, card3]
+        
+        
         //search
         
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true
         tableView.tableHeaderView = searchController.searchBar
-*/
+
     }
     
     //how to be able to search both top and bottom string?
     func filterContentForSearchText(searchText:String){
         filteredCards = cards.filter { card in
-            return card.firstPhrase.lowercaseString.containsString(searchText.lowercaseString)
+            return (card.firstPhrase.lowercaseString.containsString(searchText.lowercaseString)) || (card.secondPhrase.lowercaseString.containsString(searchText.lowercaseString))
         }
         tableView.reloadData()
     }
@@ -54,34 +64,36 @@ class CardTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if searchController.active && searchController.searchBar.text != ""{
             return filteredCards.count
+        } else {
+            return cards.count
         }
-        return cards.count
     }
-/*
+
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
-        let card: Card
+        let cellIdentifier = "CardTableViewCell"
+     
+        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! CardTableViewCell
+        
+        var card: Card
+        
         if searchController.active && searchController.searchBar.text != "" {
             card = filteredCards[indexPath.row]
         } else {
             card = cards[indexPath.row]
         }
-        /*
-        //error: topPhrase and bottomPhrase text boxes have NOT been made
-        cell.topPhrase?.text = card.firstPhrase
-        cell.bottomPhrase?.text = card.secondPhrase
+        
+        cell.topPhrase.text = card.firstPhrase
+        cell.bottomPhrase.text = card.secondPhrase
         return cell
-        */
     }
-*/
+
 
     /*
     // Override to support conditional editing of the table view.
@@ -136,12 +148,13 @@ class CardTableViewController: UITableViewController {
     */
 }
 
-/*
- //does not work yet..
- extension CardTableViewController: UISearchResultsUpdating {
- func updateSearchResultsForSearchController(searchController: UISearchController) {
- filterContentForSearchText(searchController.searchBar.text!)
- }
- }
- */
+
+
+extension CardTableViewController: UISearchResultsUpdating {
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+        filterContentForSearchText(searchController.searchBar.text!)
+    }
+    
+}
+
 
