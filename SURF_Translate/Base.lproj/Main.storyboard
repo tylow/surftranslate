@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="NVN-xE-dfG">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="NVN-xE-dfG">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -168,6 +168,22 @@
             </objects>
             <point key="canvasLocation" x="1455" y="255"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="33c-ok-9cC">
+            <objects>
+                <viewController id="6el-7c-AeC" sceneMemberID="viewController">
+                    <textField key="view" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" id="YSF-My-wdB">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <textInputTraits key="textInputTraits"/>
+                    </textField>
+                    <navigationItem key="navigationItem" id="eIf-OT-r8O"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="L7H-f4-G6c" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="183" y="-569"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="wSJ-Wv-qfb">
             <objects>
@@ -202,7 +218,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vuC-f6-mcm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1265" y="-684"/>
+            <point key="canvasLocation" x="2077" y="-684"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="uSn-se-QPN">
@@ -220,7 +236,25 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="drV-d6-N7m" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="481" y="-692"/>
+            <point key="canvasLocation" x="1293" y="-692"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="vOj-ea-E6k">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="5a2-Gb-wOI" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Abu-wu-Wtv">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="6el-7c-AeC" kind="relationship" relationship="rootViewController" id="Em3-3O-kMk"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Xi9-Hu-ebZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-629" y="-569"/>
         </scene>
     </scenes>
 </document>
