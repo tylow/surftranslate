@@ -14,12 +14,18 @@ class Deck {
     
     var name: String
     var cards: [Card]
+    
+    //keeps track of the Deck language so we can sort using the language drop down menu.
+    var language1: String?
+    var language2: String?
 
     //MARK: initialization
     
-    init?(name:String, cards: [Card]){
+    init?(name:String, cards: [Card], language1:String?, language2:String?){
         self.name = name
         self.cards = cards
+        self.language1 = language1
+        self.language2 = language2
 
         if name.isEmpty{
             return nil

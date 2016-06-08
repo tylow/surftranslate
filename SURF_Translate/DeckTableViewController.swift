@@ -41,13 +41,13 @@ class DeckTableViewController: UITableViewController{
         sampleCards += [card1, card2, card3]
         
         
-        let deck1 = Deck(name: "Refugee", cards: sampleCards)!
-        let deck2 = Deck(name: "UNHCR Phrasebook", cards: sampleCards)!
-        let deck3 = Deck(name: "UNHCR Phrasebook Extended", cards: sampleCards)!
-        let deck4 = Deck(name: "Doctors to Refugees", cards: sampleCards)!
-        let deck5 = Deck(name: "Commonly used in camp", cards: sampleCards)!
-        let deck6 = Deck(name: "Customized deck", cards: sampleCards)!
-        let deck7 = Deck(name: "Imported Online", cards: sampleCards)!
+        let deck1 = Deck(name: "Refugee", cards: sampleCards, language1: "English", language2: "Arabic")!
+        let deck2 = Deck(name: "UNHCR Phrasebook", cards: sampleCards, language1: "English", language2: "Arabic")!
+        let deck3 = Deck(name: "UNHCR Phrasebook Extended", cards: sampleCards, language1: "English", language2: "Arabic")!
+        let deck4 = Deck(name: "Doctors to Refugees", cards: sampleCards, language1: "English", language2: "Arabic")!
+        let deck5 = Deck(name: "Commonly used in camp", cards: sampleCards, language1: "English", language2: "Arabic")!
+        let deck6 = Deck(name: "Customized deck", cards: sampleCards, language1: "English", language2: "Arabic")!
+        let deck7 = Deck(name: "Imported Online", cards: sampleCards, language1: "English", language2: "Arabic")!
         decks += [deck1, deck2, deck3, deck4, deck5, deck6, deck7]
         
         
@@ -60,7 +60,6 @@ class DeckTableViewController: UITableViewController{
         // searchController.hidesNavigationBarDuringPresentation = false
         definesPresentationContext = true
         tableView.tableHeaderView = searchController.searchBar
-        
     }
     
     func filterContentForSearchText(searchText: String){
@@ -109,6 +108,7 @@ class DeckTableViewController: UITableViewController{
         }
         
         cell.deckName.text = deck.name
+        cell.numberOfCards.text = "Cards:" + String(deck.cards.count)
         return cell
     }
     
@@ -169,11 +169,6 @@ extension DeckTableViewController: UISearchResultsUpdating{
         filterContentForSearchText(searchController.searchBar.text!)
     }
 }
-
-
-
-
-
 
 
 

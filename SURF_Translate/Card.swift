@@ -16,7 +16,7 @@ class Card {
     var firstPhrase: String
     var secondPhrase: String
     
-    //For the Most Used sorting function. Increment every time user uses a card
+    //For the Most Used sorting function. Increment every time user taps the Sound Button
     var numTimesUsed: Int
     
     //Init

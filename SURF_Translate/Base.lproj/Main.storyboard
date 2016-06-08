@@ -31,15 +31,22 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uLQ-Le-dgR">
-                                            <rect key="frame" x="8" y="19" width="450" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <rect key="frame" x="14" y="7" width="450" height="24"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SaA-aE-Jbl">
+                                            <rect key="frame" x="14" y="35" width="450" height="16.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="deckName" destination="uLQ-Le-dgR" id="M9N-ph-4IA"/>
+                                    <outlet property="numberOfCards" destination="SaA-aE-Jbl" id="koU-M2-HWM"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -58,7 +65,6 @@
                                     <state key="normal" title="?"/>
                                 </button>
                             </barButtonItem>
-                            <barButtonItem systemItem="search" id="MoV-6D-jih"/>
                             <barButtonItem id="HEc-qj-Qn0"/>
                         </leftBarButtonItems>
                     </navigationItem>
@@ -81,7 +87,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="-306" y="243"/>
+            <point key="canvasLocation" x="-295" y="235"/>
         </scene>
         <!--My Cards-->
         <scene sceneID="0ZR-fA-hSE">
@@ -134,17 +140,14 @@
                     </tableView>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="My Cards" id="CEB-36-5qx">
-                        <leftBarButtonItems>
-                            <barButtonItem style="plain" id="EoF-7Q-RP7">
-                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="fVk-QI-SHM">
-                                    <rect key="frame" x="20" y="7" width="30" height="30"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                    <state key="normal" title="?"/>
-                                </button>
-                            </barButtonItem>
-                            <barButtonItem systemItem="search" id="sq5-8S-KdC"/>
-                        </leftBarButtonItems>
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="EoF-7Q-RP7">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="fVk-QI-SHM">
+                                <rect key="frame" x="20" y="7" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <state key="normal" title="?"/>
+                            </button>
+                        </barButtonItem>
                         <connections>
                             <outlet property="titleView" destination="DBo-77-1gW" id="T4E-HX-gX7"/>
                         </connections>
@@ -165,7 +168,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="605" y="235"/>
+            <point key="canvasLocation" x="472" y="235"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -184,7 +187,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1455" y="255"/>
+            <point key="canvasLocation" x="1255" y="235"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="wSJ-Wv-qfb">
@@ -202,7 +205,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r7b-Rb-1Je" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-334" y="-684"/>
+            <point key="canvasLocation" x="-295" y="-624"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="pZI-eh-IB3">
@@ -220,7 +223,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vuC-f6-mcm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1265" y="-684"/>
+            <point key="canvasLocation" x="1255" y="-624"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="uSn-se-QPN">
@@ -238,7 +241,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="drV-d6-N7m" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="481" y="-692"/>
+            <point key="canvasLocation" x="472" y="-624"/>
         </scene>
     </scenes>
 </document>
