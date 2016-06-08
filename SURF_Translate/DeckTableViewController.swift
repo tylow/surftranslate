@@ -31,8 +31,28 @@ class DeckTableViewController: UITableViewController{
         self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
     
+         //making sample Cards and Decks to test stuff
+         
+        var sampleCards = [Card]()
         
-    //MARK: search
+        let card1 = Card(firstPhrase: "1", secondPhrase: "2", numTimesUsed: 0)
+        let card2 = Card(firstPhrase: "english", secondPhrase: "arabic", numTimesUsed : 0)
+        let card3 = Card(firstPhrase: "I need water", secondPhrase: "أحتاج إلى الماء", numTimesUsed :0)
+        sampleCards += [card1, card2, card3]
+        
+        
+        let deck1 = Deck(name: "Refugee", cards: sampleCards)!
+        let deck2 = Deck(name: "UNHCR Phrasebook", cards: sampleCards)!
+        let deck3 = Deck(name: "UNHCR Phrasebook Extended", cards: sampleCards)!
+        let deck4 = Deck(name: "Doctors to Refugees", cards: sampleCards)!
+        let deck5 = Deck(name: "Commonly used in camp", cards: sampleCards)!
+        let deck6 = Deck(name: "Customized deck", cards: sampleCards)!
+        let deck7 = Deck(name: "Imported Online", cards: sampleCards)!
+        decks += [deck1, deck2, deck3, deck4, deck5, deck6, deck7]
+        
+        
+        
+//MARK: search
         
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
@@ -43,7 +63,7 @@ class DeckTableViewController: UITableViewController{
         
     }
     
-    func filterContentForSearchText(searchText: String, scope: String = "All"){
+    func filterContentForSearchText(searchText: String){
         filteredDecks = decks.filter{deck in
             return deck.name.lowercaseString.containsString(searchText.lowercaseString)
         }
@@ -57,12 +77,9 @@ class DeckTableViewController: UITableViewController{
 
     
     
-    
-    
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
     
@@ -70,23 +87,28 @@ class DeckTableViewController: UITableViewController{
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if searchController.active && searchController.searchBar.text != "" {
             return filteredDecks.count
+        } else {
+            return decks.count
         }
-        return decks.count
     }
 
     
     //lets DeckTableViewController set the values inside each cell to decks that are already filtered
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
+        
+        let cellIdentifier = "DeckTableViewCell" //this unique identifier can be edited in Attributes section of Cell object
+        
+        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! DeckTableViewCell
 
-        let deck: Deck
+        var deck: Deck
+        
         if searchController.active && searchController.searchBar.text != "" {
             deck = filteredDecks[indexPath.row]
         } else {
             deck = decks[indexPath.row]
         }
         
-        cell.textLabel?.text = deck.name
+        cell.deckName.text = deck.name
         return cell
     }
     

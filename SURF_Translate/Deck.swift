@@ -14,24 +14,19 @@ class Deck {
     
     var name: String
     var cards: [Card]
-    var random:Int
-    
-    
+
     //MARK: initialization
     
-    init?(name:String, cards: [Card], random:Int){
+    init?(name:String, cards: [Card]){
         self.name = name
         self.cards = cards
-        self.random = random
-        
-        
-        
+
         if name.isEmpty{
             return nil
         }
     }
     
-    /* un-comment for use later
+    /* un-comment for Encoding and Decoding data later
      
     //MARK: implementing the NSOBject and NSCoding protocals
     func encodeWithCoder(aCoder: NSCoder) {
