@@ -45,7 +45,7 @@ class DeckTableViewController: UITableViewController{
     
     func filterContentForSearchText(searchText: String, scope: String = "All"){
         filteredDecks = decks.filter{deck in
-            return deck.name.lowercaseString.containsString(searchText.lowercaseString)
+            return deck.name.lowercaseString.containsString(searchText.lowercaseString)//so capitalization doesn't matter when you're searching
         }
         tableView.reloadData()
     }
@@ -64,12 +64,15 @@ class DeckTableViewController: UITableViewController{
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
+        //return 1 for one continuous scroll down
     }
     
     //when searching, return the # of Decks that fit search criteria, otherwise return total #
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
         if searchController.active && searchController.searchBar.text != "" {
-            return filteredDecks.count
+            return filteredDecks.count //filteredDecks are the results that fit the criteria after u search
+            //filteredDecks.count will give us the number of Decks that fit the criteria that we are searching for.
         }
         return decks.count
     }
@@ -77,6 +80,7 @@ class DeckTableViewController: UITableViewController{
     
     //lets DeckTableViewController set the values inside each cell to decks that are already filtered
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
 
         let deck: Deck

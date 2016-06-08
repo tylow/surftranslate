@@ -14,16 +14,16 @@ class Deck {
     
     var name: String
     var cards: [Card]
-    var random:Int
+    
     
     
     //MARK: initialization
+    // ? doesn't have to initialize. It is an optional. Will not work if there is no name. Makes sure that there has to be a name.
     
-    init?(name:String, cards: [Card], random:Int){
+    init?(name:String, cards: [Card]) {
         self.name = name
         self.cards = cards
-        self.random = random
-        
+    
         
         
         if name.isEmpty{
