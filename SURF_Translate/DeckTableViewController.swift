@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DeckTableViewController: UITableViewController{
+class DeckTableViewController: UITableViewController, UINavigationControllerDelegate{
     
     //MARK: Properties:
     
@@ -34,15 +34,17 @@ class DeckTableViewController: UITableViewController{
          //making sample Cards and Decks to test stuff
          
         var sampleCards = [Card]()
+        var sampleCards2 = [Card]()
         
         let card1 = Card(firstPhrase: "1", secondPhrase: "2", numTimesUsed: 0)
         let card2 = Card(firstPhrase: "english", secondPhrase: "arabic", numTimesUsed : 0)
         let card3 = Card(firstPhrase: "I need water", secondPhrase: "أحتاج إلى الماء", numTimesUsed :0)
         sampleCards += [card1, card2, card3]
+        sampleCards2 += [card1, card3]
         
         
         let deck1 = Deck(name: "Refugee", cards: sampleCards, language1: "English", language2: "Arabic")!
-        let deck2 = Deck(name: "UNHCR Phrasebook", cards: sampleCards, language1: "English", language2: "Arabic")!
+        let deck2 = Deck(name: "UNHCR Phrasebook", cards: sampleCards2, language1: "English", language2: "Arabic")!
         let deck3 = Deck(name: "UNHCR Phrasebook Extended", cards: sampleCards, language1: "English", language2: "Arabic")!
         let deck4 = Deck(name: "Doctors to Refugees", cards: sampleCards, language1: "English", language2: "Arabic")!
         let deck5 = Deck(name: "Commonly used in camp", cards: sampleCards, language1: "English", language2: "Arabic")!
@@ -148,21 +150,26 @@ class DeckTableViewController: UITableViewController{
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
      
      
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // when implementing this, select the correct Deck using filteredDecks[indexPath.row] (refer to CandySearch]
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "showCards"{
+        
+            let showCardsViewController = segue.destinationViewController as! CardTableViewController
+            
+            if let selectedDeckCell = sender as? DeckTableViewCell{
+                let indexPath = tableView.indexPathForCell(selectedDeckCell)!
+                let selectedDeck = decks[indexPath.row]
+                showCardsViewController.cards = selectedDeck.cards
+                
+            }
+        }
     }
-    */
-
 }
-
 
 extension DeckTableViewController: UISearchResultsUpdating{
     func updateSearchResultsForSearchController(searchController: UISearchController) {

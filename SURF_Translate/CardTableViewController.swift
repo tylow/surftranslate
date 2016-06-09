@@ -8,10 +8,11 @@
 
 import UIKit
 
-class CardTableViewController: UITableViewController {
+class CardTableViewController: UITableViewController, UINavigationControllerDelegate {
     
     //MARK: properties
     
+
     var cards = [Card]() //keeps track of all the Card objects
     
     //search
@@ -30,12 +31,13 @@ class CardTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         self.navigationItem.rightBarButtonItem = self.editButtonItem()
   
-        
+        /*
         //adding some sample Cards
         let card1 = Card(firstPhrase: "1", secondPhrase: "2", numTimesUsed: 0)
         let card2 = Card(firstPhrase: "English", secondPhrase: "Arabic", numTimesUsed: 0)
         let card3 = Card(firstPhrase: "I need water", secondPhrase: "أحتاج إلى الماء", numTimesUsed:0)
         cards += [card1, card2, card3]
+        */
         
         
         //search
@@ -44,7 +46,7 @@ class CardTableViewController: UITableViewController {
         searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true
         tableView.tableHeaderView = searchController.searchBar
-
+        
     }
     
     //how to be able to search both top and bottom string?
