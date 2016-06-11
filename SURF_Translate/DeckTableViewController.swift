@@ -35,12 +35,14 @@ class DeckTableViewController: UITableViewController, UINavigationControllerDele
          
         var sampleCards = [Card]()
         var sampleCards2 = [Card]()
+        var sampleCards3 = [Card]()
         
         let card1 = Card(firstPhrase: "1", secondPhrase: "2", numTimesUsed: 0)
         let card2 = Card(firstPhrase: "english", secondPhrase: "arabic", numTimesUsed : 0)
         let card3 = Card(firstPhrase: "I need water", secondPhrase: "أحتاج إلى الماء", numTimesUsed :0)
         sampleCards += [card1, card2, card3]
         sampleCards2 += [card1, card3]
+        sampleCards3 += [card3]
         
         
         let deck1 = Deck(name: "Refugee", cards: sampleCards, language1: "English", language2: "Arabic")!
@@ -49,7 +51,7 @@ class DeckTableViewController: UITableViewController, UINavigationControllerDele
         let deck4 = Deck(name: "Doctors to Refugees", cards: sampleCards, language1: "English", language2: "Arabic")!
         let deck5 = Deck(name: "Commonly used in camp", cards: sampleCards, language1: "English", language2: "Arabic")!
         let deck6 = Deck(name: "Customized deck", cards: sampleCards, language1: "English", language2: "Arabic")!
-        let deck7 = Deck(name: "Imported Online", cards: sampleCards, language1: "English", language2: "Arabic")!
+        let deck7 = Deck(name: "Imported Online", cards: sampleCards3, language1: "English", language2: "Arabic")!
         decks += [deck1, deck2, deck3, deck4, deck5, deck6, deck7]
         
         
@@ -58,8 +60,7 @@ class DeckTableViewController: UITableViewController, UINavigationControllerDele
         
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
-        // un-comment code below to *not* hide navigation bar. In this case need to implement pop-up keyboard
-        // searchController.hidesNavigationBarDuringPresentation = false
+        searchController.hidesNavigationBarDuringPresentation = false 
         definesPresentationContext = true
         tableView.tableHeaderView = searchController.searchBar
     }
@@ -157,13 +158,19 @@ class DeckTableViewController: UITableViewController, UINavigationControllerDele
      
      
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        var selectedDeck: Deck
         if segue.identifier == "showCards"{
         
             let showCardsViewController = segue.destinationViewController as! CardTableViewController
             
             if let selectedDeckCell = sender as? DeckTableViewCell{
                 let indexPath = tableView.indexPathForCell(selectedDeckCell)!
-                let selectedDeck = decks[indexPath.row]
+                
+                if searchController.active && searchController.searchBar.text != "" {
+                    selectedDeck = filteredDecks[indexPath.row]
+                } else {
+                    selectedDeck = decks[indexPath.row]
+                }
                 showCardsViewController.cards = selectedDeck.cards
                 
             }
