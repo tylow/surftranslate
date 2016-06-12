@@ -18,6 +18,10 @@ class NewDeckViewController: UIViewController, UINavigationControllerDelegate, U
 
     @IBOutlet weak var secondLanguageTextField: UITextField!
     
+    @IBOutlet weak var saveButton: UIButton!
+    
+    var newDeck = Deck?()
+    
     var cardsOfNewDeck = [Card]()
     
     
@@ -25,6 +29,10 @@ class NewDeckViewController: UIViewController, UINavigationControllerDelegate, U
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        nameTextField.delegate = self
+        
+        //make sure save button is diabled when first starts
+        checkValidDeckName()
     }
 
     override func didReceiveMemoryWarning() {
@@ -32,24 +40,45 @@ class NewDeckViewController: UIViewController, UINavigationControllerDelegate, U
         // Dispose of any resources that can be recreated.
     }
     
-    //MARK: Actions
-    @IBAction func saveNewDeck(sender: UIButton) {
-        /*if nameTextField.text != ""{
-            let newDeck = Deck(name: nameTextField.text!, cards: cards, language1: firstLanguageTextField.text, language2: secondLanguageTextField.text)
-            decks += [newDeck]
-        }
-        */
-    }
     
-
-    /*
     // MARK: - Navigation
+    @IBAction func cancelNewDeck(sender: AnyObject) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if saveButton === sender {
+            let name = nameTextField.text!
+            let firstLanguage = firstLanguageTextField.text ?? ""
+            let secondLanguage = secondLanguageTextField.text ?? ""
+            
+            newDeck = Deck(name: name, cards: cardsOfNewDeck, language1: firstLanguage, language2: secondLanguage)
+        }
+        
     }
-    */
+    
+    //MARK: UITextFieldDelegate
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        // Hide the keyboard.
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    func textFieldDidBeginEditing(TextField: UITextField) {
+        // Disable the Save button while editing.
+        saveButton.enabled = false
+    }
+    
+    func checkValidDeckName() {
+        // Disable the Save button if the text field is empty.
+        let text = nameTextField.text ?? ""
+        saveButton.enabled = !text.isEmpty
+    }
 
+    func textFieldDidEndEditing(textField: UITextField) {
+        checkValidDeckName()
+        navigationItem.title = nameTextField.text
+    }
 }

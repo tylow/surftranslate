@@ -24,7 +24,7 @@
                                 <rect key="frame" x="0.0" y="136" width="600" height="55"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="M7w-QZ-XTJ" id="eTP-I5-6Yd">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="54.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="55"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SaA-aE-Jbl">
@@ -97,7 +97,7 @@
             </objects>
             <point key="canvasLocation" x="2221" y="931"/>
         </scene>
-        <!--New Deck-->
+        <!--New Deck View Controller-->
         <scene sceneID="OzU-R7-9Qp">
             <objects>
                 <viewController id="6bh-1g-jqa" customClass="NewDeckViewController" customModule="SURF_Translate" customModuleProvider="target" sceneMemberID="viewController">
@@ -109,34 +109,34 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First language of this deck" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WlM-LK-oGV">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First language of this deck" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WlM-LK-oGV">
                                 <rect key="frame" x="20" y="231" width="540" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Language 1 (Optional)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ExZ-0a-XMc">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Language 1 (Optional)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ExZ-0a-XMc">
                                 <rect key="frame" x="20" y="202" width="168" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Second language of this deck" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mKf-dy-Zay">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Second language of this deck" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mKf-dy-Zay">
                                 <rect key="frame" x="20" y="331" width="540" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name of new deck" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BH0-Vk-nax">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name of new deck" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BH0-Vk-nax">
                                 <rect key="frame" x="20" y="131" width="560" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LE1-Jg-vFP">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LE1-Jg-vFP">
                                 <rect key="frame" x="20" y="102" width="45" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Language 2 (Optional)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I6L-Pz-kl7">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Language 2 (Optional)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I6L-Pz-kl7">
                                 <rect key="frame" x="18" y="302" width="170" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -154,7 +154,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                 <state key="normal" title="Save"/>
                                 <connections>
-                                    <action selector="saveNewDeck:" destination="6bh-1g-jqa" eventType="touchUpInside" id="mk9-eb-JPI"/>
+                                    <segue destination="OZR-KT-pSC" kind="unwind" unwindAction="unwindToDeckList:" id="TXh-Zs-zm2"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -181,16 +181,22 @@
                             <constraint firstItem="LE1-Jg-vFP" firstAttribute="leading" secondItem="5oX-6f-Qyf" secondAttribute="leadingMargin" id="yeS-d9-CO5"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="New Deck" id="eNE-ve-c86">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="CYR-9Y-ni4"/>
+                    <navigationItem key="navigationItem" prompt="New Deck" id="eNE-ve-c86">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="CYR-9Y-ni4">
+                            <connections>
+                                <action selector="cancelNewDeck:" destination="6bh-1g-jqa" id="gej-uP-bB5"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="firstLanguageTextField" destination="WlM-LK-oGV" id="Pf5-ES-72A"/>
                         <outlet property="nameTextField" destination="BH0-Vk-nax" id="ZIu-uB-q7N"/>
+                        <outlet property="saveButton" destination="hIL-sx-8Yv" id="lmK-9D-KNb"/>
                         <outlet property="secondLanguageTextField" destination="mKf-dy-Zay" id="lho-Fw-oAY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ebg-eW-KR3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="OZR-KT-pSC" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2221" y="1789"/>
         </scene>
@@ -215,7 +221,7 @@
                                 <rect key="frame" x="0.0" y="136" width="600" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Y8c-UJ-qTp" id="NqE-CE-5sI">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="69.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="70"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Wk-Xv-Zop">
@@ -277,7 +283,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="3948" y="943"/>
+            <point key="canvasLocation" x="3020" y="931"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ISQ-7i-O3e">
@@ -295,7 +301,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PPs-hV-IcQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2221" y="119"/>
+            <point key="canvasLocation" x="2221" y="144"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ImN-Pf-M3Q">
@@ -316,7 +322,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9DO-ha-gwV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3935" y="119"/>
+            <point key="canvasLocation" x="3020" y="144"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="h63-Km-3t7">
@@ -341,6 +347,6 @@
         <image name="DeckIcon" width="256" height="256"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="nBi-tt-xcH"/>
+        <segue reference="zQ2-CT-oXH"/>
     </inferredMetricsTieBreakers>
 </document>

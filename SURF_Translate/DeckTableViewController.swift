@@ -177,6 +177,18 @@ class DeckTableViewController: UITableViewController, UINavigationControllerDele
             }
         }
     }
+    
+    @IBAction func unwindToDeckList(sender: UIStoryboardSegue) {
+        if let sourceViewController = sender.sourceViewController as? NewDeckViewController, newDeck = sourceViewController.newDeck {
+            
+            // Add a new meal.
+            let newIndexPath = NSIndexPath(forRow: decks.count, inSection: 0)
+            decks.append(newDeck)
+            tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Bottom)
+        }
+    }
+    
+
 }
 
 extension DeckTableViewController: UISearchResultsUpdating{
