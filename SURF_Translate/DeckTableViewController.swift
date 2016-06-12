@@ -47,7 +47,7 @@ class DeckTableViewController: UITableViewController, UINavigationControllerDele
         
         let deck1 = Deck(name: "Refugee", cards: sampleCards, language1: "English", language2: "Arabic")!
         let deck2 = Deck(name: "UNHCR Phrasebook", cards: sampleCards2, language1: "English", language2: "Arabic")!
-        let deck3 = Deck(name: "UNHCR Phrasebook Extended", cards: sampleCards, language1: "English", language2: "Arabic")!
+        let deck3 = Deck(name: "UNHCR Phrasebook Extended extended extended extended extended dddddddddddddddddddddddddddddddd", cards: sampleCards, language1: "English", language2: "Arabic")!
         let deck4 = Deck(name: "Doctors to Refugees", cards: sampleCards, language1: "English", language2: "Arabic")!
         let deck5 = Deck(name: "Commonly used in camp", cards: sampleCards, language1: "English", language2: "Arabic")!
         let deck6 = Deck(name: "Customized deck", cards: sampleCards, language1: "English", language2: "Arabic")!
@@ -172,6 +172,7 @@ class DeckTableViewController: UITableViewController, UINavigationControllerDele
                     selectedDeck = decks[indexPath.row]
                 }
                 showCardsViewController.cards = selectedDeck.cards
+                showCardsViewController.navigationItem.title? = selectedDeck.name
                 
             }
         }

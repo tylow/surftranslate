@@ -16,6 +16,7 @@
 		F17E93FB1CFFC0970029F271 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17E93FA1CFFC0970029F271 /* Card.swift */; };
 		F17E93FD1D000FFB0029F271 /* CardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17E93FC1D000FFB0029F271 /* CardTableViewCell.swift */; };
 		F17E93FF1D0011600029F271 /* CardTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17E93FE1D0011600029F271 /* CardTableViewController.swift */; };
+		F1C9BEC61D0CCBCB000CE7B8 /* NewDeckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C9BEC51D0CCBCB000CE7B8 /* NewDeckViewController.swift */; };
 		F1E42AAF1D094E8A00242EB4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1E42AAD1D094E8A00242EB4 /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +32,7 @@
 		F17E93FA1CFFC0970029F271 /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		F17E93FC1D000FFB0029F271 /* CardTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardTableViewCell.swift; sourceTree = "<group>"; };
 		F17E93FE1D0011600029F271 /* CardTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardTableViewController.swift; sourceTree = "<group>"; };
+		F1C9BEC51D0CCBCB000CE7B8 /* NewDeckViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewDeckViewController.swift; sourceTree = "<group>"; };
 		F1E42AAE1D094E8A00242EB4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -68,6 +70,7 @@
 				F17E93F61CFFC0440029F271 /* DeckTableViewController.swift */,
 				F17E93F41CFFBC010029F271 /* DeckTableViewCell.swift */,
 				F1E42AAD1D094E8A00242EB4 /* Main.storyboard */,
+				F1C9BEC51D0CCBCB000CE7B8 /* NewDeckViewController.swift */,
 				F17E93F81CFFC08F0029F271 /* Deck.swift */,
 				F17E93FC1D000FFB0029F271 /* CardTableViewCell.swift */,
 				F17E93FE1D0011600029F271 /* CardTableViewController.swift */,
@@ -156,6 +159,7 @@
 				F17E93F91CFFC08F0029F271 /* Deck.swift in Sources */,
 				F17E93F71CFFC0440029F271 /* DeckTableViewController.swift in Sources */,
 				F17E93D71CFFAD920029F271 /* AppDelegate.swift in Sources */,
+				F1C9BEC61D0CCBCB000CE7B8 /* NewDeckViewController.swift in Sources */,
 				F17E93FD1D000FFB0029F271 /* CardTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
