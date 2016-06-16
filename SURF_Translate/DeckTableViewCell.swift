@@ -13,6 +13,7 @@ class DeckTableViewCell: UITableViewCell {
     //Properties
     @IBOutlet weak var deckName: UILabel!
     @IBOutlet weak var numberOfCards: UILabel!
+    @IBOutlet weak var deckFavoriteControl: DeckFavoriteControl!
     
     
     override func awakeFromNib() {

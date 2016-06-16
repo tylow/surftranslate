@@ -14,6 +14,7 @@ class CardTableViewCell: UITableViewCell {
     
     @IBOutlet weak var topPhrase: UILabel!
     @IBOutlet weak var bottomPhrase: UILabel!
+   
     
     override func awakeFromNib() {
         super.awakeFromNib()

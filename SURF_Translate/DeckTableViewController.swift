@@ -11,9 +11,13 @@ import UIKit
 class DeckTableViewController: UITableViewController, UINavigationControllerDelegate{
     
     //MARK: Properties:
-    
+
     //keeps array of Deck objects
     var decks = [Deck]()
+    
+     //favoriteDecks is used *internally* to keep track of all my favorite decks. For sorting purposes etc.
+     // every time a Deck is favorited, add it to the favoriteDecks array, but also have it in the normal decks array, because the tableview controller displays the decks array. favoriteDecks is not displayed and only used to keep track internally.
+    var favoriteDecks = [Deck]()
     
     //implementing search. "nil" means no new view controller needed when searching
     let searchController = UISearchController(searchResultsController: nil)
@@ -47,22 +51,24 @@ class DeckTableViewController: UITableViewController, UINavigationControllerDele
         sampleCards3 += [card3, card4]
         
         
-        let deck1 = Deck(name: "Refugee", cards: sampleCards, language1: "English", language2: "Arabic")!
-        let deck2 = Deck(name: "UNHCR Phrasebook", cards: sampleCards2, language1: "English", language2: "Arabic")!
-        let deck3 = Deck(name: "UNHCR Phrasebook Extended extended extended extended extended dddddddddddddddddddddddddddddddd", cards: sampleCards, language1: "English", language2: "Arabic")!
-        let deck4 = Deck(name: "Doctors to Refugees", cards: sampleCards, language1: "English", language2: "Arabic")!
-        let deck5 = Deck(name: "Commonly used in camp", cards: sampleCards, language1: "English", language2: "Arabic")!
-        let deck6 = Deck(name: "Customized deck", cards: sampleCards, language1: "English", language2: "Arabic")!
-        let deck7 = Deck(name: "Imported Online", cards: sampleCards3, language1: "English", language2: "Arabic")!
+        let deck1 = Deck(name: "Refugee", cards: sampleCards, language1: "English", language2: "Arabic", isFavorite: true)!
+        let deck2 = Deck(name: "UNHCR Phrasebook", cards: sampleCards2, language1: "English", language2: "Arabic", isFavorite: true)!
+        let deck3 = Deck(name: "UNHCR Phrasebook Extended extended extended extended extended dddddddddddddddddddddddddddddddd", cards: sampleCards, language1: "English", language2: "Arabic", isFavorite: false)!
+        let deck4 = Deck(name: "Doctors to Refugees", cards: sampleCards, language1: "English", language2: "Arabic", isFavorite: false)!
+        let deck5 = Deck(name: "Commonly used in camp", cards: sampleCards, language1: "English", language2: "Arabic", isFavorite: false)!
+        let deck6 = Deck(name: "Customized deck", cards: sampleCards, language1: "English", language2: "Arabic", isFavorite: false)!
+        let deck7 = Deck(name: "Imported Online", cards: sampleCards3, language1: "English", language2: "Arabic", isFavorite: false)!
         decks += [deck1, deck2, deck3, deck4, deck5, deck6, deck7]
         
-        
+        //filtering favorited decks from all decks
+        favoriteDecks = decks.filter{$0.isFavorite == true}
+
         
 //MARK: search
         
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
-        searchController.hidesNavigationBarDuringPresentation = false 
+        searchController.hidesNavigationBarDuringPresentation = true  //maybe we should set this to true?
         definesPresentationContext = true
         tableView.tableHeaderView = searchController.searchBar
     }
@@ -114,6 +120,7 @@ class DeckTableViewController: UITableViewController, UINavigationControllerDele
         
         cell.deckName.text = deck.name
         cell.numberOfCards.text = "Cards:" + String(deck.cards.count)
+        cell.deckFavoriteControl.isFavorite = deck.isFavorite
         return cell
     }
     
@@ -185,10 +192,22 @@ class DeckTableViewController: UITableViewController, UINavigationControllerDele
     @IBAction func unwindToDeckList(sender: UIStoryboardSegue) {
         if let sourceViewController = sender.sourceViewController as? NewDeckViewController, newDeck = sourceViewController.newDeck {
             
-            // Add a new meal.
-            let newIndexPath = NSIndexPath(forRow: decks.count, inSection: 0)
-            decks.append(newDeck)
-            tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Bottom)
+            // if new made Deck is favorited, then this code below puts it on top, below the other Favorited decks.
+            if newDeck.isFavorite == true{
+                let newIndexPath = NSIndexPath(forRow: favoriteDecks.count, inSection: 0)
+                decks.insert(newDeck, atIndex: favoriteDecks.count)
+                tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Bottom)
+                
+                favoriteDecks.append(newDeck)
+            
+            // if not a Favorite, then put on bottom of all the decks
+            } else {
+                let newIndexPath = NSIndexPath(forRow: decks.count, inSection: 0)
+                decks.append(newDeck)
+                tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Bottom)
+            }
+           
+            
         }
     }
     
