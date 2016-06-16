@@ -19,7 +19,7 @@ class NewDeckViewController: UIViewController, UINavigationControllerDelegate, U
     @IBOutlet weak var secondLanguageTextField: UITextField!
     
     @IBOutlet weak var saveButton: UIButton!
-    
+
     var newDeck = Deck?()
     
     var cardsOfNewDeck = [Card]()
@@ -81,4 +81,7 @@ class NewDeckViewController: UIViewController, UINavigationControllerDelegate, U
         checkValidDeckName()
         navigationItem.title = nameTextField.text
     }
+    
+
+    
 }
