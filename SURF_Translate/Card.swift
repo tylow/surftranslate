@@ -16,6 +16,7 @@ class Card {
     var firstPhrase: String
     var secondPhrase: String
     
+    
     //For the Most Used sorting function. Increment every time user taps the Sound Button
     var numTimesUsed: Int
     
@@ -24,5 +25,6 @@ class Card {
         self.firstPhrase = firstPhrase
         self.secondPhrase = secondPhrase
         self.numTimesUsed = numTimesUsed
+        
     }
 }

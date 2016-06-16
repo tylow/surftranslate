@@ -40,14 +40,16 @@ class DeckTableViewController: UITableViewController, UINavigationControllerDele
         let card1 = Card(firstPhrase: "1", secondPhrase: "2", numTimesUsed: 0)
         let card2 = Card(firstPhrase: "english", secondPhrase: "arabic", numTimesUsed : 0)
         let card3 = Card(firstPhrase: "I need water", secondPhrase: "أحتاج إلى الماء", numTimesUsed :0)
-        sampleCards += [card1, card2, card3]
-        sampleCards2 += [card1, card3]
-        sampleCards3 += [card3]
+        let card4 = Card(firstPhrase: "Hello", secondPhrase: "Salaam", numTimesUsed: 0)
+            
+        sampleCards += [card1, card2, card3, card4]
+        sampleCards2 += [card1, card3, card4]
+        sampleCards3 += [card3, card4]
         
         
         let deck1 = Deck(name: "Refugee", cards: sampleCards, language1: "English", language2: "Arabic")!
         let deck2 = Deck(name: "UNHCR Phrasebook", cards: sampleCards2, language1: "English", language2: "Arabic")!
-        let deck3 = Deck(name: "UNHCR Phrasebook Extended", cards: sampleCards, language1: "English", language2: "Arabic")!
+        let deck3 = Deck(name: "UNHCR Phrasebook Extended extended extended extended extended dddddddddddddddddddddddddddddddd", cards: sampleCards, language1: "English", language2: "Arabic")!
         let deck4 = Deck(name: "Doctors to Refugees", cards: sampleCards, language1: "English", language2: "Arabic")!
         let deck5 = Deck(name: "Commonly used in camp", cards: sampleCards, language1: "English", language2: "Arabic")!
         let deck6 = Deck(name: "Customized deck", cards: sampleCards, language1: "English", language2: "Arabic")!
@@ -172,10 +174,25 @@ class DeckTableViewController: UITableViewController, UINavigationControllerDele
                     selectedDeck = decks[indexPath.row]
                 }
                 showCardsViewController.cards = selectedDeck.cards
+                showCardsViewController.navigationItem.title? = selectedDeck.name
                 
             }
+        } else if segue.identifier == "AddDeck"{
+            print ("add new deck")
         }
     }
+    
+    @IBAction func unwindToDeckList(sender: UIStoryboardSegue) {
+        if let sourceViewController = sender.sourceViewController as? NewDeckViewController, newDeck = sourceViewController.newDeck {
+            
+            // Add a new meal.
+            let newIndexPath = NSIndexPath(forRow: decks.count, inSection: 0)
+            decks.append(newDeck)
+            tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Bottom)
+        }
+    }
+    
+
 }
 
 extension DeckTableViewController: UISearchResultsUpdating{
