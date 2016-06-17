@@ -102,7 +102,6 @@ class DeckTableViewController: UITableViewController, UINavigationControllerDele
         }
     }
 
-    
     //lets DeckTableViewController set the values inside each cell to decks that are already filtered
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
@@ -206,12 +205,8 @@ class DeckTableViewController: UITableViewController, UINavigationControllerDele
                 decks.append(newDeck)
                 tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Bottom)
             }
-           
-            
         }
     }
-    
-
 }
 
 extension DeckTableViewController: UISearchResultsUpdating{

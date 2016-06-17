@@ -4,6 +4,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
         <!--My Decks-->
@@ -24,7 +25,7 @@
                                 <rect key="frame" x="0.0" y="136" width="600" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="M7w-QZ-XTJ" id="eTP-I5-6Yd">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="59.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SaA-aE-Jbl">
@@ -208,7 +209,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ebg-eW-KR3" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="OZR-KT-pSC" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4657" y="2331"/>
+            <point key="canvasLocation" x="4657" y="2351"/>
         </scene>
         <!--My Cards-->
         <scene sceneID="Cno-I3-IcW">
@@ -231,7 +232,7 @@
                                 <rect key="frame" x="0.0" y="136" width="600" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Y8c-UJ-qTp" id="NqE-CE-5sI">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="70"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="69.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Wk-Xv-Zop">
@@ -272,7 +273,15 @@
                     </tableView>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="My Cards" id="wsl-Bf-9bz">
-                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="Kzk-fw-eaZ"/>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="edit" id="Kzk-fw-eaZ"/>
+                            <barButtonItem systemItem="add" id="V8J-vL-2hg">
+                                <inset key="imageInsets" minX="0.0" minY="0.0" maxX="-44" maxY="0.0"/>
+                                <connections>
+                                    <segue destination="GNS-Pg-Nwj" kind="presentation" id="6bx-vU-96m"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -291,6 +300,72 @@
                 </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="5456" y="931"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="mDd-wJ-FBa">
+            <objects>
+                <viewController id="YSC-ux-aRg" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="xxA-01-zNN"/>
+                        <viewControllerLayoutGuide type="bottom" id="F44-Oc-BHs"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="W6R-AU-5ds">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Translate to: (Language 2)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fUn-eV-vVd">
+                                <rect key="frame" x="20" y="225" width="207" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="First phrase of this card" translatesAutoresizingMaskIntoConstraints="NO" id="C7E-gr-zRR">
+                                <rect key="frame" x="20" y="101" width="540" height="100"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Translate from: (Language 1)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S2X-iO-TOD">
+                                <rect key="frame" x="20" y="72" width="224" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Second phrase of this card" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="XbF-GQ-yp3">
+                                <rect key="frame" x="20" y="254" width="540" height="100"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cF5-9h-wQs">
+                                <rect key="frame" x="248" y="416" width="86" height="30"/>
+                                <state key="normal" title="Record/Stop"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Eu-UI-6vP">
+                                <rect key="frame" x="374" y="416" width="35" height="30"/>
+                                <state key="normal" title="Play"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YXX-S1-11Q">
+                                <rect key="frame" x="258" y="454" width="64" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <state key="normal" title="Save"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oqC-XF-e1r">
+                                <rect key="frame" x="163" y="416" width="45" height="30"/>
+                                <state key="normal" title="Delete"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="cF5-9h-wQs" firstAttribute="leading" secondItem="oqC-XF-e1r" secondAttribute="trailing" constant="40" id="Qb6-gc-xxr"/>
+                            <constraint firstItem="6Eu-UI-6vP" firstAttribute="leading" secondItem="cF5-9h-wQs" secondAttribute="trailing" constant="40" id="bEW-fx-tlE"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="odd-Ta-cpn"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oaO-lB-r3p" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5456" y="2351"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ISQ-7i-O3e">
@@ -349,11 +424,29 @@
             </objects>
             <point key="canvasLocation" x="4657" y="1635"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="9PK-A5-8OE">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="GNS-Pg-Nwj" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="RWu-jT-dz9">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="YSC-ux-aRg" kind="relationship" relationship="rootViewController" id="zZW-DO-EsK"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uVO-uy-djn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5456" y="1635"/>
+        </scene>
     </scenes>
     <resources>
         <image name="DeckIcon" width="256" height="256"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="nBi-tt-xcH"/>
+        <segue reference="zQ2-CT-oXH"/>
     </inferredMetricsTieBreakers>
 </document>
