@@ -44,7 +44,7 @@ class CardTableViewController: UITableViewController, UINavigationControllerDele
         
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
-        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.hidesNavigationBarDuringPresentation = true
         definesPresentationContext = true
         tableView.tableHeaderView = searchController.searchBar
         
@@ -96,15 +96,8 @@ class CardTableViewController: UITableViewController, UINavigationControllerDele
         cell.bottomPhrase.text = card.secondPhrase
         return cell
     }
+    
 
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
 
     /*
     // Override to support editing the table view.
@@ -149,6 +142,7 @@ class CardTableViewController: UITableViewController, UINavigationControllerDele
         */
     }
     */
+
 }
 
 

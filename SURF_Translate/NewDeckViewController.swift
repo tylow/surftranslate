@@ -13,12 +13,11 @@ class NewDeckViewController: UIViewController, UINavigationControllerDelegate, U
     //MARK: Properties
     
     @IBOutlet weak var nameTextField: UITextField!
-    
     @IBOutlet weak var firstLanguageTextField: UITextField!
-
     @IBOutlet weak var secondLanguageTextField: UITextField!
-    
     @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var deckFavoriteControl: DeckFavoriteControl!
+    
 
     var newDeck = Deck?()
     
@@ -52,8 +51,9 @@ class NewDeckViewController: UIViewController, UINavigationControllerDelegate, U
             let name = nameTextField.text!
             let firstLanguage = firstLanguageTextField.text ?? ""
             let secondLanguage = secondLanguageTextField.text ?? ""
+            let isFavorite = deckFavoriteControl.isFavorite
             
-            newDeck = Deck(name: name, cards: cardsOfNewDeck, language1: firstLanguage, language2: secondLanguage)
+            newDeck = Deck(name: name, cards: cardsOfNewDeck, language1: firstLanguage, language2: secondLanguage, isFavorite: isFavorite)
         }
         
     }
@@ -69,6 +69,7 @@ class NewDeckViewController: UIViewController, UINavigationControllerDelegate, U
     func textFieldDidBeginEditing(TextField: UITextField) {
         // Disable the Save button while editing.
         saveButton.enabled = false
+
     }
     
     func checkValidDeckName() {

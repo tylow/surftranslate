@@ -14,6 +14,7 @@ class Deck {
     
     var name: String
     var cards: [Card]
+    var isFavorite: Bool = false
     
     
     //keeps track of the Deck language so we can sort using the language drop down menu.
@@ -22,11 +23,12 @@ class Deck {
 
     //MARK: initialization
     
-    init?(name:String, cards: [Card], language1:String?, language2:String?){
+    init?(name:String, cards: [Card], language1:String?, language2:String?, isFavorite: Bool){
         self.name = name
         self.cards = cards
         self.language1 = language1
         self.language2 = language2
+        self.isFavorite = isFavorite
         
 
         if name.isEmpty{
