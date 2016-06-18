@@ -21,10 +21,13 @@ class Card {
     var numTimesUsed: Int
     
     //Init
-    init(firstPhrase:String, secondPhrase:String, numTimesUsed:Int){
+    init?(firstPhrase:String, secondPhrase:String, numTimesUsed:Int){
         self.firstPhrase = firstPhrase
         self.secondPhrase = secondPhrase
         self.numTimesUsed = numTimesUsed
         
+        if firstPhrase.isEmpty && secondPhrase.isEmpty{
+            return nil
+        }
     }
 }
