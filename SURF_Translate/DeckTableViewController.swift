@@ -41,10 +41,10 @@ class DeckTableViewController: UITableViewController, UINavigationControllerDele
         var sampleCards2 = [Card]()
         var sampleCards3 = [Card]()
         
-        let card1 = Card(firstPhrase: "1", secondPhrase: "2", numTimesUsed: 0)
-        let card2 = Card(firstPhrase: "english", secondPhrase: "arabic", numTimesUsed : 0)
-        let card3 = Card(firstPhrase: "I need water", secondPhrase: "أحتاج إلى الماء", numTimesUsed :0)
-        let card4 = Card(firstPhrase: "Hello", secondPhrase: "Salaam", numTimesUsed: 0)
+        let card1 = Card(firstPhrase: "1", secondPhrase: "2", numTimesUsed: 0)!
+        let card2 = Card(firstPhrase: "english", secondPhrase: "arabic", numTimesUsed : 0)!
+        let card3 = Card(firstPhrase: "I need water", secondPhrase: "أحتاج إلى الماء", numTimesUsed :0)!
+        let card4 = Card(firstPhrase: "Hello", secondPhrase: "Salaam", numTimesUsed: 0)!
             
         sampleCards += [card1, card2, card3, card4]
         sampleCards2 += [card1, card3, card4]
@@ -102,7 +102,6 @@ class DeckTableViewController: UITableViewController, UINavigationControllerDele
         }
     }
 
-    
     //lets DeckTableViewController set the values inside each cell to decks that are already filtered
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
@@ -206,12 +205,8 @@ class DeckTableViewController: UITableViewController, UINavigationControllerDele
                 decks.append(newDeck)
                 tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Bottom)
             }
-           
-            
         }
     }
-    
-
 }
 
 extension DeckTableViewController: UISearchResultsUpdating{

@@ -126,12 +126,15 @@ class CardTableViewController: UITableViewController, UINavigationControllerDele
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
+        if segue.identifier == "AddCard"{
+            print ("adding new card")
+        }
         /*
         let card: Card
         if searchController.active && searchController.searchBar.text != ""{
@@ -141,8 +144,17 @@ class CardTableViewController: UITableViewController, UINavigationControllerDele
          }
         */
     }
-    */
-
+    
+    @IBAction func unwindToCardList(sender: UIStoryboardSegue){
+        if let sourceViewController = sender.sourceViewController as? NewCardViewController, newCard = sourceViewController.newCard {
+            
+            //need to implement fav function later
+            
+            let newIndexPath = NSIndexPath(forRow: cards.count, inSection: 0)
+            cards.append(newCard)
+            tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Bottom)
+        }
+    }
 }
 
 
