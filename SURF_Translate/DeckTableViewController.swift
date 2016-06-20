@@ -8,7 +8,9 @@
 
 import UIKit
 
-class DeckTableViewController: UITableViewController, UINavigationControllerDelegate{
+class DeckTableViewController: UITableViewController, UINavigationControllerDelegate, CardTableVCDelegate{
+    
+    
     
     //MARK: Properties:
 
@@ -25,6 +27,14 @@ class DeckTableViewController: UITableViewController, UINavigationControllerDele
     var filteredDecks = [Deck]()
     
 
+    var selectedDeck: Deck? //set this to deck gets selected
+    
+    
+    func updateFavoriteDecks(){
+        favoriteDecks = decks.filter{$0.isFavorite == true}
+    }
+    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -34,9 +44,17 @@ class DeckTableViewController: UITableViewController, UINavigationControllerDele
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
+        /*
+        if let savedDecks = loadDecks(){
+            decks += savedDecks
+        } /* else {
+            loadSampleDecks() //need to make this method at some point
+        } */
+        */
     
          //making sample Cards and Decks to test stuff
-         
+        
+        /*
         var sampleCards = [Card]()
         var sampleCards2 = [Card]()
         var sampleCards3 = [Card]()
@@ -60,9 +78,11 @@ class DeckTableViewController: UITableViewController, UINavigationControllerDele
         let deck7 = Deck(name: "Imported Online", cards: sampleCards3, language1: "English", language2: "Arabic", isFavorite: false)!
         decks += [deck1, deck2, deck3, deck4, deck5, deck6, deck7]
         
+ 
         //filtering favorited decks from all decks
         favoriteDecks = decks.filter{$0.isFavorite == true}
-
+        
+        */
         
 //MARK: search
         
@@ -80,6 +100,7 @@ class DeckTableViewController: UITableViewController, UINavigationControllerDele
         tableView.reloadData()
     }
 
+    //idk what this does
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -116,6 +137,7 @@ class DeckTableViewController: UITableViewController, UINavigationControllerDele
         } else {
             deck = decks[indexPath.row]
         }
+        selectedDeck = deck //keeps track of which one is selected
         
         cell.deckName.text = deck.name
         cell.numberOfCards.text = "Cards:" + String(deck.cards.count)
@@ -132,17 +154,21 @@ class DeckTableViewController: UITableViewController, UINavigationControllerDele
     }
     */
 
-    /*
+    
     // Override to support editing the table view.
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        
         if editingStyle == .Delete {
             // Delete the row from the data source
+            decks.removeAtIndex(indexPath.row)
+            // saveDecks()
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            
         } else if editingStyle == .Insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
-    */
+    
 
     /*
     // Override to support rearranging the table view.
@@ -166,21 +192,40 @@ class DeckTableViewController: UITableViewController, UINavigationControllerDele
      
      
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        var selectedDeck: Deck
-        if segue.identifier == "showCards"{
+        
+        var selected: Deck
+    
+        //below: different actions depending on which segue is beling called
+        
+        if segue.identifier == "EditDeck"{
+            let destinationNavController = segue.destinationViewController as! UINavigationController
+            let editDeckViewController = destinationNavController.topViewController as! NewDeckViewController
+            if let selectedDeckCell = sender as? DeckTableViewCell{
+                let indexPath = tableView.indexPathForCell(selectedDeckCell)!
+                if searchController.active && searchController.searchBar.text != "" {
+                    selected = filteredDecks[indexPath.row]
+                } else {
+                    selected = decks[indexPath.row]
+                }
+                editDeckViewController.newDeck = selected
+            }
+        } else if segue.identifier == "ShowCards"{
         
             let showCardsViewController = segue.destinationViewController as! CardTableViewController
+            showCardsViewController.delegate = self
             
             if let selectedDeckCell = sender as? DeckTableViewCell{
                 let indexPath = tableView.indexPathForCell(selectedDeckCell)!
                 
                 if searchController.active && searchController.searchBar.text != "" {
-                    selectedDeck = filteredDecks[indexPath.row]
+                    selected = filteredDecks[indexPath.row]
                 } else {
-                    selectedDeck = decks[indexPath.row]
+                    selected = decks[indexPath.row]
                 }
-                showCardsViewController.cards = selectedDeck.cards
-                showCardsViewController.navigationItem.title? = selectedDeck.name
+                showCardsViewController.cards = selected.cards
+                showCardsViewController.navigationItem.title? = selected.name
+                
+                selectedDeck = selected
                 
             }
         } else if segue.identifier == "AddDeck"{
@@ -189,24 +234,89 @@ class DeckTableViewController: UITableViewController, UINavigationControllerDele
     }
     
     @IBAction func unwindToDeckList(sender: UIStoryboardSegue) {
+        
         if let sourceViewController = sender.sourceViewController as? NewDeckViewController, newDeck = sourceViewController.newDeck {
             
-            // if new made Deck is favorited, then this code below puts it on top, below the other Favorited decks.
-            if newDeck.isFavorite == true{
-                let newIndexPath = NSIndexPath(forRow: favoriteDecks.count, inSection: 0)
-                decks.insert(newDeck, atIndex: favoriteDecks.count)
-                tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Bottom)
+            //replacing edited Decks
+            if let selectedIndexPath = tableView.indexPathForSelectedRow{
+                print("row selected")
                 
-                favoriteDecks.append(newDeck)
-            
-            // if not a Favorite, then put on bottom of all the decks
+                
+                if searchController.active && searchController.searchBar.text != "" {
+                    let temp = filteredDecks[selectedIndexPath.row]
+                    let index: Int = decks.indexOf({$0 === temp})!
+                    decks[index] = newDeck
+                    updateFavoriteDecks()
+                    tableView.reloadData()
+                } else {
+                    decks[selectedIndexPath.row] = newDeck
+                    updateFavoriteDecks()
+                    tableView.reloadRowsAtIndexPaths([selectedIndexPath], withRowAnimation: .None)
+                }
+                
             } else {
-                let newIndexPath = NSIndexPath(forRow: decks.count, inSection: 0)
-                decks.append(newDeck)
-                tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Bottom)
+                print("no row selected")
+                // if new made Deck is favorited, then this code below puts it on top, below the other Favorited decks.
+                if newDeck.isFavorite == true{
+                    let newIndexPath = NSIndexPath(forRow: favoriteDecks.count, inSection: 0)
+                    decks.insert(newDeck, atIndex: favoriteDecks.count)
+                    tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Bottom)
+                    
+                    updateFavoriteDecks()
+                    
+                    // if not a Favorite, then put on bottom of all the decks
+                } else {
+                    let newIndexPath = NSIndexPath(forRow: decks.count, inSection: 0)
+                    decks.append(newDeck)
+                    tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Bottom)
+                }
+            }
+            //saveDecks()  //persistence
+        }
+    }
+    
+    
+    //MARK: Editing
+    //tapping the accessory "i" button doesn't automatically select row. This selects row
+    override func tableView(tableView: UITableView, accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath) {
+        tableView.selectRowAtIndexPath(indexPath, animated: false, scrollPosition: .None)
+    }
+    
+    /*
+    //MARK: NSCoding
+    func saveDecks(){
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(decks, toFile: Deck.ArchiveURL.path!)
+        if !isSuccessfulSave{
+            print("failed to save decks")
+        }
+    }
+    
+    func loadDecks() -> [Deck]? {
+        return NSKeyedUnarchiver.unarchiveObjectWithFile(Deck.ArchiveURL.path!) as? [Deck]
+    }
+    */
+    
+    //MARK: delegate
+    //function that is delegated to CardTableVC
+    func updateDeck(card:Card){
+        for x in decks{
+            if x === selectedDeck{   //use triple = sign to make sure they *refer* to same object
+                x.cards.append(card)
+                tableView.reloadData()
             }
         }
     }
+    
+    func deleteFromDeck(indexPath: NSIndexPath) {
+        for x in decks{
+            if x === selectedDeck{
+                x.cards.removeAtIndex(indexPath.row)
+                tableView.reloadData()
+            }
+        }
+    }
+    
+    
 }
 
 extension DeckTableViewController: UISearchResultsUpdating{

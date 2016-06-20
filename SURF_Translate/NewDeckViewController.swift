@@ -21,7 +21,7 @@ class NewDeckViewController: UIViewController, UINavigationControllerDelegate, U
 
     var newDeck = Deck?()
     
-    var cardsOfNewDeck = [Card]()
+    var cardsOfNewDeck = [Card]() // implement this
     
     
     override func viewDidLoad() {
@@ -29,6 +29,17 @@ class NewDeckViewController: UIViewController, UINavigationControllerDelegate, U
 
         // Do any additional setup after loading the view.
         nameTextField.delegate = self
+        
+        //if there already exists a deck - editing existing deck
+        if let newDeck = newDeck{
+            navigationItem.title = "Edit Deck"
+            nameTextField.text = newDeck.name
+            firstLanguageTextField.text = newDeck.language1
+            secondLanguageTextField.text = newDeck.language2
+            deckFavoriteControl.isFavorite = newDeck.isFavorite
+            cardsOfNewDeck = newDeck.cards
+        }
+        
         
         //make sure save button is diabled when first starts
         checkValidDeckName()
