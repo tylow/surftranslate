@@ -18,6 +18,11 @@ class NewCardViewController: UIViewController, UINavigationControllerDelegate, U
     @IBOutlet weak var translateToTextView: UITextView!
     @IBOutlet weak var saveButton: UIButton!
     
+    //audio buttons
+    @IBOutlet weak var audioDelete: UIButton!
+    @IBOutlet weak var audioRecordStop: UIButton!
+    @IBOutlet weak var audioPlay: UIButton!
+    
     var newCard = Card?()
 
     override func viewDidLoad() {
