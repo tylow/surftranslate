@@ -8,17 +8,24 @@
 
 import UIKit
 
+//for delegate
+protocol CardTableVCDelegate: class {
+    func updateDeck(card:Card)
+    func deleteFromDeck(indexPath: NSIndexPath)
+}
+
 class CardTableViewController: UITableViewController, UINavigationControllerDelegate {
     
     //MARK: properties
-    
-
     var cards = [Card]() //keeps track of all the Card objects
     
     //search
     let searchController = UISearchController(searchResultsController: nil)
     
     var filteredCards = [Card]()
+    
+    //delegate
+    weak var delegate: CardTableVCDelegate?
 
     
     override func viewDidLoad() {
@@ -30,7 +37,14 @@ class CardTableViewController: UITableViewController, UINavigationControllerDele
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         self.navigationItem.rightBarButtonItem = self.editButtonItem()
-  
+        
+         //may or may not need this; can date persist only Decks
+        /*
+        if let savedCards = loadCards(){
+            cards += savedCards
+        }
+        */
+        
         /*
         //adding some sample Cards
         let card1 = Card(firstPhrase: "1", secondPhrase: "2", numTimesUsed: 0)
@@ -39,9 +53,7 @@ class CardTableViewController: UITableViewController, UINavigationControllerDele
         cards += [card1, card2, card3]
         */
         
-        
         //search
-        
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
         searchController.hidesNavigationBarDuringPresentation = true
@@ -50,7 +62,7 @@ class CardTableViewController: UITableViewController, UINavigationControllerDele
         
     }
     
-    //how to be able to search both top and bottom string?
+    //able to search both top and bottom string
     func filterContentForSearchText(searchText:String){
         filteredCards = cards.filter { card in
             return (card.firstPhrase.lowercaseString.containsString(searchText.lowercaseString)) || (card.secondPhrase.lowercaseString.containsString(searchText.lowercaseString))
@@ -77,7 +89,6 @@ class CardTableViewController: UITableViewController, UINavigationControllerDele
             return cards.count
         }
     }
-
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cellIdentifier = "CardTableViewCell"
@@ -97,19 +108,23 @@ class CardTableViewController: UITableViewController, UINavigationControllerDele
         return cell
     }
     
-
-
-    /*
+    
     // Override to support editing the table view.
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
-            // Delete the row from the data source
+            
+            delegate?.deleteFromDeck(indexPath)
+            
+            cards.removeAtIndex(indexPath.row)
+            //saveCards() //data persistence
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            
+            
         } else if editingStyle == .Insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
-    */
+    
 
     /*
     // Override to support rearranging the table view.
@@ -153,11 +168,28 @@ class CardTableViewController: UITableViewController, UINavigationControllerDele
             let newIndexPath = NSIndexPath(forRow: cards.count, inSection: 0)
             cards.append(newCard)
             tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Bottom)
+            
+            delegate?.updateDeck(newCard)
+            
+            
+            //data persistence
+            //saveCards()
         }
     }
+    /*
+    //MARK: NSCoding
+    func saveCards(){
+        let isSucessfulSave = NSKeyedArchiver.archiveRootObject(cards, toFile: Card.ArchiveURL.path!)
+        if !isSucessfulSave{
+            print("failed to save cards")
+        }
+    }
+    
+    func loadCards() -> [Card]? {
+        return NSKeyedUnarchiver.unarchiveObjectWithFile(Card.ArchiveURL.path!) as? [Card]
+    }
+    */
 }
-
-
 
 extension CardTableViewController: UISearchResultsUpdating {
     func updateSearchResultsForSearchController(searchController: UISearchController) {
